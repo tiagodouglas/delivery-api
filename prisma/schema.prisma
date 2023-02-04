@@ -1,0 +1,164 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id      Int    @id @default(autoincrement())
+  email   String @unique()
+  hash    String
+  nome    String
+  celular String
+
+  roleId Int
+  role   Role @relation(fields: [roleId], references: [id])
+
+  dataCriacao     DateTime      @default(now())
+  dataAtualizacao DateTime      @updatedAt
+  UsuarioLoja     UsuarioLoja[]
+
+  @@map("usuarios")
+}
+
+model UsuarioLoja {
+  id        Int      @id @default(autoincrement())
+  usuarioId Int
+  usuario   Usuario? @relation(fields: [usuarioId], references: [id])
+  lojaId    Int
+  loja      Loja?    @relation(fields: [lojaId], references: [id])
+
+  @@map("usuarioLojas")
+}
+
+model Loja {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  imageURL        String?
+  icone           String?
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  statusId              Int?
+  status                LojaStatus?            @relation(fields: [statusId], references: [id])
+  categorias            Categoria[]
+  produtos              Produto[]
+  formasPagamento       FormaPagamento[]
+  horariosFuncionamento HorarioFuncionamento[]
+  UsuarioLoja           UsuarioLoja[]
+
+  @@map("lojas")
+}
+
+model LojaStatus {
+  id    Int    @id @default(autoincrement())
+  nome  String
+  lojas Loja[]
+
+  @@map("lojaStatus")
+}
+
+model Categoria {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  lojaId   Int
+  loja     Loja      @relation(fields: [lojaId], references: [id])
+  produtos Produto[]
+
+  @@map("categorias")
+}
+
+model Produto {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  imagemURL       String
+  valor           Decimal
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  categoriaId Int
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+
+  lojaId            Int
+  loja              Loja               @relation(fields: [lojaId], references: [id])
+  produtoOpcoes     ProdutoOpcao[]
+  produtoAdicionais ProdutoAdicional[]
+
+  @@map("produtos")
+}
+
+model ProdutoOpcao {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  produtoId         Int
+  produto           Produto            @relation(fields: [produtoId], references: [id])
+  produtoOpcaoItems ProdutoOpcaoItem[]
+
+  @@map("produtoOpcoes")
+}
+
+model ProdutoOpcaoItem {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  produtoOpcaoId Int
+  produtoOpcao   ProdutoOpcao @relation(fields: [produtoOpcaoId], references: [id])
+
+  @@map("produtoOpcaoItens")
+}
+
+model ProdutoAdicional {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  valor           Decimal
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  produtoId Int
+  produto   Produto @relation(fields: [produtoId], references: [id])
+
+  @@map("produtoAdicionais")
+}
+
+model FormaPagamento {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  lojaId Int
+  loja   Loja @relation(fields: [lojaId], references: [id])
+
+  @@map("formasPagamento")
+}
+
+model HorarioFuncionamento {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  horaInicio      String
+  horaFim         String
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  lojaId Int
+  loja   Loja @relation(fields: [lojaId], references: [id])
+
+  @@map("horariosFuncionamento")
+}
+
+model Role {
+  id      Int       @id @default(autoincrement())
+  nome    String
+  Usuario Usuario[]
+}
