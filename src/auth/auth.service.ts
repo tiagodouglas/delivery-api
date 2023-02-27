@@ -37,8 +37,6 @@ export class AuthService {
             }
         });
 
-        console.log(lojas)
-
         const token = await this.signToken(user.id, user.email);
 
         return {

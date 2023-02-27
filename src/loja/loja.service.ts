@@ -18,8 +18,6 @@ export class LojaService {
     }
 
     async createLoja(dto: LojaCreateDto) {
-        const hash = await argon.hash(dto.senha);
-
         try {
             const loja = await this.prisma.loja.create({
                 data: {
@@ -42,15 +40,13 @@ export class LojaService {
     }
 
     async updateLoja(dto: LojaUpdateDto) {
-        const hash = await argon.hash(dto.senha);
-
         try {
             const loja = await this.prisma.loja.update({
                 data: {
                     nome: dto.nome,
                     icone: dto.icone,
                     imageURL: null,
-                    statusId: null
+                    statusId: null,
                 },
                 where: {
                     id: dto.id

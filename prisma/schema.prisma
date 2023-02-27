@@ -77,7 +77,7 @@ model Categoria {
 model Produto {
   id              Int      @id @default(autoincrement())
   nome            String
-  imagemURL       String
+  imagemURL       String?
   valor           Decimal
   dataCriacao     DateTime @default(now())
   dataAtualizacao DateTime @updatedAt

@@ -10,6 +10,8 @@ async function bootstrap() {
     whitelist: true
   }));
 
+  app.enableCors();
+
   const config = new DocumentBuilder()
     .setTitle('Delivery API')
     .addBearerAuth()
