@@ -33,7 +33,7 @@ export class ProdutoController {
     @ApiOperation({ summary: 'Altera um produto cadastrado' })
     @ApiResponse({ status: 401, description: 'Forbidden.' })
     @ApiResponse({ status: 200, description: 'Success' })
-    async updateProduto(@Param('idProduto') id: number, @Body() dto: ProdutoUpdateDto) {
+    async updateProduto(@Param('idProduto') id: string, @Body() dto: ProdutoUpdateDto) {
         dto.id = id;
         return await this.produtoService.updateProduto(dto);
     }

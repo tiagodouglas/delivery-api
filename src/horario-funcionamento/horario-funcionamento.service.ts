@@ -6,10 +6,10 @@ import { HorarioFuncionamentoCreateDto, HorarioFuncionamentoUpdateDto } from './
 export class HorarioFuncionamentoService {
     constructor(private readonly prisma: PrismaService) { }
 
-     async getHorarioFuncionamentoPorLoja(idLoja: number) {
+     async getHorarioFuncionamentoPorLoja(idLoja: string) {
         return await this.prisma.horarioFuncionamento.findMany({
             where: {
-                lojaId: +idLoja
+                lojaId: idLoja
             }
         })
     }

@@ -34,7 +34,7 @@ export class HorarioFuncionamentoController {
     @ApiOperation({ summary: 'Altera um horario de funcionamento cadastrado' })
     @ApiResponse({ status: 401, description: 'Forbidden.' })
     @ApiResponse({ status: 200, description: 'Success' })
-    async updateHorarioFuncionamento(@Param('idHorarioFuncionamento') id: number, @Body() dto: HorarioFuncionamentoUpdateDto) {
+    async updateHorarioFuncionamento(@Param('idHorarioFuncionamento') id: string, @Body() dto: HorarioFuncionamentoUpdateDto) {
         dto.id = id;
         return await this.horarioFuncionamentoService.updateHorarioFuncionamento(dto);
     }

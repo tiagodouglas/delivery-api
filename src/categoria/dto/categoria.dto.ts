@@ -4,7 +4,7 @@ import { IsNotEmpty } from "class-validator";
 export class CategoriaCreateDto {
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo lojaId não pode estar vazio' })
-    lojaId: number 
+    lojaId: string 
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo Nome não pode estar vazio' })
@@ -14,11 +14,11 @@ export class CategoriaCreateDto {
 export class CategoriaUpdateDto {
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo Id não pode estar vazio' })
-    id: number 
+    id: string 
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo lojaId não pode estar vazio' })
-    lojaId: number 
+    lojaId: string 
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo Nome não pode estar vazio' })

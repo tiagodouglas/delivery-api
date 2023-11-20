@@ -34,7 +34,7 @@ export class FormaPagamentoController {
     @ApiOperation({ summary: 'Altera uma forma de pagamento cadastrada' })
     @ApiResponse({ status: 401, description: 'Forbidden.' })
     @ApiResponse({ status: 200, description: 'Success' })
-    async updateProduto(@Param('idFormaPagamento') id: number, @Body() dto: FormaPagamentoUpdateDto) {
+    async updateProduto(@Param('idFormaPagamento') id: string, @Body() dto: FormaPagamentoUpdateDto) {
         dto.id = id;
         return await this.formaPagamentoService.updateFormaPagamento(dto);
     }

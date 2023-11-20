@@ -17,13 +17,13 @@ export class HorarioFuncionamentoCreateDto {
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo lojaId não pode estar vazio' })
-    lojaId: number
+    lojaId: string
 }
 
 export class HorarioFuncionamentoUpdateDto {
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo id não pode estar vazio' })
-    id: number
+    id: string
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo nome não pode estar vazio' })
@@ -39,5 +39,5 @@ export class HorarioFuncionamentoUpdateDto {
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo lojaId não pode estar vazio' })
-    lojaId: number
+    lojaId: string
 }

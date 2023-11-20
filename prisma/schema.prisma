@@ -8,14 +8,14 @@ datasource db {
 }
 
 model Usuario {
-  id      Int    @id @default(autoincrement())
+  id      String @id @default(uuid())
   email   String @unique()
   hash    String
   nome    String
   celular String
 
-  roleId Int
-  role   Role @relation(fields: [roleId], references: [id])
+  roleId String
+  role   Role   @relation(fields: [roleId], references: [id])
 
   dataCriacao     DateTime      @default(now())
   dataAtualizacao DateTime      @updatedAt
@@ -25,24 +25,24 @@ model Usuario {
 }
 
 model UsuarioLoja {
-  id        Int      @id @default(autoincrement())
-  usuarioId Int
+  id        String   @id @default(uuid())
+  usuarioId String
   usuario   Usuario? @relation(fields: [usuarioId], references: [id])
-  lojaId    Int
+  lojaId    String
   loja      Loja?    @relation(fields: [lojaId], references: [id])
 
   @@map("usuarioLojas")
 }
 
 model Loja {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   nome            String
   imageURL        String?
   icone           String?
   dataCriacao     DateTime @default(now())
   dataAtualizacao DateTime @updatedAt
 
-  statusId              Int?
+  statusId              String?
   status                LojaStatus?            @relation(fields: [statusId], references: [id])
   categorias            Categoria[]
   produtos              Produto[]
@@ -54,7 +54,7 @@ model Loja {
 }
 
 model LojaStatus {
-  id    Int    @id @default(autoincrement())
+  id    String @id @default(uuid())
   nome  String
   lojas Loja[]
 
@@ -62,12 +62,12 @@ model LojaStatus {
 }
 
 model Categoria {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   nome            String
   dataCriacao     DateTime @default(now())
   dataAtualizacao DateTime @updatedAt
 
-  lojaId   Int
+  lojaId   String
   loja     Loja      @relation(fields: [lojaId], references: [id])
   produtos Produto[]
 
@@ -75,17 +75,17 @@ model Categoria {
 }
 
 model Produto {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   nome            String
   imagemURL       String?
   valor           Decimal
   dataCriacao     DateTime @default(now())
   dataAtualizacao DateTime @updatedAt
 
-  categoriaId Int
+  categoriaId String
   categoria   Categoria @relation(fields: [categoriaId], references: [id])
 
-  lojaId            Int
+  lojaId            String
   loja              Loja               @relation(fields: [lojaId], references: [id])
   produtoOpcoes     ProdutoOpcao[]
   produtoAdicionais ProdutoAdicional[]
@@ -94,12 +94,12 @@ model Produto {
 }
 
 model ProdutoOpcao {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   nome            String
   dataCriacao     DateTime @default(now())
   dataAtualizacao DateTime @updatedAt
 
-  produtoId         Int
+  produtoId         String
   produto           Produto            @relation(fields: [produtoId], references: [id])
   produtoOpcaoItems ProdutoOpcaoItem[]
 
@@ -107,58 +107,58 @@ model ProdutoOpcao {
 }
 
 model ProdutoOpcaoItem {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   nome            String
   dataCriacao     DateTime @default(now())
   dataAtualizacao DateTime @updatedAt
 
-  produtoOpcaoId Int
+  produtoOpcaoId String
   produtoOpcao   ProdutoOpcao @relation(fields: [produtoOpcaoId], references: [id])
 
   @@map("produtoOpcaoItens")
 }
 
 model ProdutoAdicional {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   nome            String
   valor           Decimal
   dataCriacao     DateTime @default(now())
   dataAtualizacao DateTime @updatedAt
 
-  produtoId Int
+  produtoId String
   produto   Produto @relation(fields: [produtoId], references: [id])
 
   @@map("produtoAdicionais")
 }
 
 model FormaPagamento {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   nome            String
   dataCriacao     DateTime @default(now())
   dataAtualizacao DateTime @updatedAt
 
-  lojaId Int
+  lojaId String
   loja   Loja @relation(fields: [lojaId], references: [id])
 
   @@map("formasPagamento")
 }
 
 model HorarioFuncionamento {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   nome            String
   horaInicio      String
   horaFim         String
   dataCriacao     DateTime @default(now())
   dataAtualizacao DateTime @updatedAt
 
-  lojaId Int
+  lojaId String
   loja   Loja @relation(fields: [lojaId], references: [id])
 
   @@map("horariosFuncionamento")
 }
 
 model Role {
-  id      Int       @id @default(autoincrement())
+  id      String    @id @default(uuid())
   nome    String
   Usuario Usuario[]
 }

@@ -7,10 +7,10 @@ export class ProdutoService {
     constructor(private readonly prisma: PrismaService) {
     }
 
-    async getProdutosPorLoja(idLoja: number) {
+    async getProdutosPorLoja(idLoja: string) {
         return await this.prisma.produto.findMany({
             where: {
-                lojaId: +idLoja
+                lojaId: idLoja
             }
         })
     }

@@ -12,17 +12,17 @@ export class ProdutoCreateDto {
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo categoriaId não pode estar vazio' })
-    categoriaId: number
+    categoriaId: string
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo lojaId não pode estar vazio' })
-    lojaId: number
+    lojaId: string
 }
 
 export class ProdutoUpdateDto {
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo id não pode estar vazio' })
-    id: number
+    id: string
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo nome não pode estar vazio' })
@@ -34,9 +34,9 @@ export class ProdutoUpdateDto {
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo categoriaId não pode estar vazio' })
-    categoriaId: number
+    categoriaId: string
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo lojaId não pode estar vazio' })
-    lojaId: number
+    lojaId: string
 }

@@ -30,5 +30,5 @@ export class ProdutoAdicionalUpdateDto {
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo produtoId não pode estar vazio' })
-    produtoId: number
+    produtoId: string
 }

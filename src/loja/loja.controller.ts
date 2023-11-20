@@ -34,7 +34,7 @@ export class LojaController {
     @ApiOperation({ summary: 'Atualiza uma loja' })
     @ApiResponse({ status: 401, description: 'Forbidden.' })
     @ApiResponse({ status: 200, description: 'Success' })
-    async updateLoja(@Param('idLoja') id: number, @Body() dto: LojaUpdateDto) {
+    async updateLoja(@Param('idLoja') id: string, @Body() dto: LojaUpdateDto) {
         dto.id = id;
         return await this.lojaService.updateLoja(dto);
     }
@@ -44,7 +44,7 @@ export class LojaController {
     @ApiOperation({ summary: 'Atualiza  o status de uma loja' })
     @ApiResponse({ status: 401, description: 'Forbidden.' })
     @ApiResponse({ status: 200, description: 'Success' })
-    async updateLojaStatus(@Param('idLoja') idLoja: number, @Param('idStatus') idStatus: number) {
+    async updateLojaStatus(@Param('idLoja') idLoja: string, @Param('idStatus') idStatus: string) {
         return await this.lojaService.updateLojaStatus({ idLoja, idStatus });
     }
 }

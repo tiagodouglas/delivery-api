@@ -8,7 +8,7 @@ import { SignInDto, SignUpDto } from './dto';
 export class AuthController {
     constructor(private autService: AuthService) { }
 
-    @Post('signUp')
+    @Post('sign-up')
     @HttpCode(HttpStatus.OK)
     @ApiOperation({ summary: 'Cria um novo usuario' })
     @ApiResponse({ status: 200, description: 'Success' })
@@ -16,7 +16,7 @@ export class AuthController {
         return await this.autService.signUp(dto);
     }
 
-    @Post('signIn')
+    @Post('sign-in')
     @HttpCode(HttpStatus.OK)
     @ApiOperation({ summary: 'Faz autenticacao de um usuario existente' })
     @ApiResponse({ status: 403, description: 'Forbidden.' })

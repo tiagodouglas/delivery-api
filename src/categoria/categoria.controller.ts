@@ -18,7 +18,7 @@ export class CategoriaController {
     @ApiOperation({ summary: 'Busca as categorias de uma loja' })
     @ApiResponse({ status: 401, description: 'Forbidden.' })
     @ApiResponse({ status: 200, description: 'Success' })
-    async getCategoriasPorLoja(@Param('idLoja') idLoja: number) {
+    async getCategoriasPorLoja(@Param('idLoja') idLoja: string) {
         return await this.categoriaService.getCategoriasPorLoja(idLoja);
     }
 

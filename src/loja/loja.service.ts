@@ -68,10 +68,10 @@ export class LojaService {
         try {
             const loja = await this.prisma.loja.update({
                 data: {
-                    statusId: +dto.idStatus
+                    statusId: dto.idStatus
                 },
                 where: {
-                    id: +dto.idLoja
+                    id: dto.idLoja
                 }
             });
 

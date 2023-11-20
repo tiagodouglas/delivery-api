@@ -25,7 +25,7 @@ export class LojaCreateDto {
 
 
 export class LojaUpdateDto {
-    id: number
+    id: string
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo Email não pode estar vazio' })
@@ -49,8 +49,8 @@ export class LojaUpdateDto {
 }
 
 export class LojaUpdateStatusDto {
-    idLoja: number
+    idLoja: string
 
     @ApiProperty()
-    idStatus: number
+    idStatus: string
 }

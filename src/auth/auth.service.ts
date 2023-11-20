@@ -39,7 +39,10 @@ export class AuthService {
 
         const token = await this.signToken(user.id, user.email);
 
+        delete user.hash;
+
         return {
+            ...user,
             ...token,
             ...lojas
         }
@@ -55,7 +58,7 @@ export class AuthService {
                     nome: dto.nome,
                     celular: dto.celular,
                     hash,
-                    roleId: 2 // usuario comum
+                    roleId: 'a414a16b-63ab-4b90-9f42-33fc832883a2' // usuario comum
                 },
                 select: {
                     id: true,
@@ -79,7 +82,7 @@ export class AuthService {
         }
     }
 
-    async signToken(userId: number, email: string): Promise<{ accessToken: string }> {
+    async signToken(userId: string, email: string): Promise<{ accessToken: string, expiresIn: number }> {
         const payload = {
             sub: userId,
             email,
@@ -91,7 +94,8 @@ export class AuthService {
         });
 
         return {
-            accessToken: token
+            accessToken: token,
+            expiresIn: 60 * 60 * 60
         }
     }
 }

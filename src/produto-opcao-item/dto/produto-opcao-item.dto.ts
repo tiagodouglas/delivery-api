@@ -14,7 +14,7 @@ export class ProdutoOpcaoItemCreateDto {
 export class ProdutoOpcaoItemUpdateDto {
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo id não pode estar vazio' })
-    id: number
+    id: string
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo id não pode estar vazio' })
@@ -22,5 +22,5 @@ export class ProdutoOpcaoItemUpdateDto {
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo id não pode estar vazio' })
-    produtoOpcaoId: number
+    produtoOpcaoId: string
 }

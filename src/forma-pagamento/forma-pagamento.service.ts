@@ -6,10 +6,10 @@ import { FormaPagamentoCreateDto, FormaPagamentoUpdateDto } from './dto';
 export class FormaPagamentoService {
     constructor(private readonly prisma: PrismaService) { }
 
-    async getFormaPagamentoPorLoja(idLoja: number) {
+    async getFormaPagamentoPorLoja(idLoja: string) {
         return await this.prisma.formaPagamento.findMany({
             where: {
-                lojaId: +idLoja
+                lojaId: idLoja
             }
         })
     }

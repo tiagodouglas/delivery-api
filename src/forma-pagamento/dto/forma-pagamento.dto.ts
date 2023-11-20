@@ -8,13 +8,13 @@ export class FormaPagamentoCreateDto {
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo lojaId não pode estar vazio' })
-    lojaId: number
+    lojaId: string
 }
 
 export class FormaPagamentoUpdateDto {
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo id não pode estar vazio' })
-    id: number
+    id: string
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo nome não pode estar vazio' })
@@ -22,5 +22,5 @@ export class FormaPagamentoUpdateDto {
 
     @ApiProperty()
     @IsNotEmpty({ message: 'Campo lojaId não pode estar vazio' })
-    lojaId: number
+    lojaId: string
 }

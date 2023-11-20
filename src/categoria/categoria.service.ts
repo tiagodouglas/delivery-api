@@ -6,10 +6,10 @@ import { CategoriaCreateDto, CategoriaUpdateDto } from './dto';
 export class CategoriaService {
     constructor(private readonly prisma: PrismaService) { }
 
-    async getCategoriasPorLoja(idLoja: number) {
+    async getCategoriasPorLoja(idLoja: string) {
         return await this.prisma.categoria.findMany({
             where: {
-                lojaId: +idLoja
+                lojaId: idLoja
             }
         })
     }
